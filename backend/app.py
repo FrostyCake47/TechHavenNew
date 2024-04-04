@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 # Connect endpoint
@@ -8,7 +10,8 @@ app = Flask(__name__)
 def connect():
     try:
         com_port = request.json.get('comport')
-        return jsonify({'message': 'Got the comport' + com_port})
+        command = request.json.get('command')
+        return jsonify({'message': 'Got the comport' + com_port + "\ncommand: " + command})
     except Exception as e:
         return jsonify({"message": "some error: " + e})
 
