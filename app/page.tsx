@@ -17,9 +17,12 @@ export default function Home() {
       {/*<Link href='/LightControl'>Light Control</Link>
       <Link href='/FanControl'>Fan Control</Link>*/}
 
-      <div className="flex bg-neutral-800 py-5">
-        <button onClick={() => setCurrentPage(<LightControl/>)} className="text-white">Light Control</button>
-        <button onClick={() => setCurrentPage(<FanControl/>)} className="text-white">Fan Control</button>
+      <div className="flex bg-neutral-800 py-5 justify-between items-center">
+        <p className="text-white mx-5">Tech Haven</p>
+        <div>
+          <button onClick={() => setCurrentPage(<LightControl/>)} className="text-white mx-1 bg-transparent px-5 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200 ease-in-out">Light Control</button>
+          <button onClick={() => setCurrentPage(<FanControl/>)} className="text-white mx-1 bg-transparent px-5 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200 ease-in-out">Fan Control</button>
+        </div>
       </div>
 
       <div>
