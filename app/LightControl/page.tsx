@@ -9,7 +9,7 @@ const LightControl = () => {
 
     const connect = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/connect', {
+            const response = await axios.post('http://localhost:5002/connect', {
               comport : "COM3"
             });
             console.log('Connected:', response.data);
@@ -23,7 +23,7 @@ const LightControl = () => {
 
     const sendCommand = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/sendcommand', {
+            const response = await axios.post('http://localhost:5002/sendcommand', {
               command : command ? "ON" : "OFF"
             });
             console.log('Connected:', response.data);
