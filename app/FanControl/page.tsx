@@ -1,30 +1,26 @@
 'use client';
 import axios from 'axios';
+import { Socket } from 'dgram';
 import { connect } from 'http2'
 import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client';
 
 
-
 const FanControl = () => {
   const [connection, setConnection] = useState(false);
-  const [variable, setVariable] = useState('weow');
+  const [variable, setVariable] = useState(0);
+  const socket = io('http://localhost:5000');
 
   useEffect(() => {
-    const socket = io('http://localhost:5000');
-    
     socket.on('variable_update', (data) => {
-      console.log("data: " + data);
+      console.log("on variable_update data: " + data);
       setVariable(data);
     });
 
     socket.on('connect', () => {
-      console.log('WebSocket connected');// Update state to indicate WebSocket connection
+      console.log('WebSocket connected');
+      
   });
-
-    return () => {
-      socket.disconnect();
-    };
   }, []);
 
   const connect = async () => {
