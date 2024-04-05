@@ -12,9 +12,8 @@ const LightControl = () => {
             const response = await axios.post('http://localhost:5002/connect', {
               comport : "COM3"
             });
-            console.log('Connected:', response.data);
+            console.log(response.data)
             setConnection(prevConnection => !prevConnection);
-            console.log(connection);
     
           } catch (error) {
             console.error('Error connecting:', error);

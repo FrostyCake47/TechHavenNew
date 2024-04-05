@@ -21,7 +21,7 @@ def connect():
     try:
         com_port = request.json.get('comport')
         command = request.json.get('command')
-        return jsonify({'message': 'Got the comport' + com_port + "\ncommand: " + command})
+        return jsonify({'message': 'Got the comport' + str(com_port) + "command: " + str(command)})
     except Exception as e:
         return jsonify({"message": "some error: " + e})
 

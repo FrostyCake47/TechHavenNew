@@ -4,17 +4,23 @@ import { connect } from 'http2'
 import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+
 
 const FanControl = () => {
   const [connection, setConnection] = useState(false);
   const [variable, setVariable] = useState('weow');
 
   useEffect(() => {
+    const socket = io('http://localhost:5000');
+    
     socket.on('variable_update', (data) => {
       console.log("data: " + data);
       setVariable(data);
     });
+
+    socket.on('connect', () => {
+      console.log('WebSocket connected');// Update state to indicate WebSocket connection
+  });
 
     return () => {
       socket.disconnect();
@@ -37,7 +43,7 @@ const FanControl = () => {
 const updateVariable = async () => {
   try {
     console.log("updating var");
-    const response = await axios.post('http://localhost:5000/update-variable', {
+    const response = await axios.post('http://localhost:5000/update_variable', {
       comport : "COM3"
 
     });
